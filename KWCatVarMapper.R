@@ -31,6 +31,17 @@ main <- function()
   
   second_filter <- merge(distinct_criteria_df, first_filter)
   write_csv(second_filter, "Final Filtered Result Set.csv")
+    dollars_sum <- sum(second_filter$dollars_obligated)
+  print(paste0("Total amount obligated is ", dollars_sum))
+  
+  i = length(second_filter)
+  listed <- data.frame(NULL)
+  for(j in 1:i)
+  {
+    listed[j,1] = length(unique(second_filter[,j]))
+    listed[j,2] = colnames(second_filter[j])
+  }
+  listed[order(listed$V1),]
   }
 
 psc_dor_load_and_prep <- function(term_file, df_file)
